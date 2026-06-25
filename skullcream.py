@@ -25,11 +25,13 @@ def main_banner():
         if value == "":
             check_exist_data = f"{colorama.Fore.RED}x{colorama.Fore.RESET}"
         else:
-            check_exist_data = f"{colorama.Fore.GREEN}✓{colorama.Fore.RESET}"
+            check_exist_data = f"{colorama.Fore.GREEN}✓{colorama.Fore.RESET} ({value})"
             
         print(f" ├[0{i}]- {key.capitalize().replace("_", " ")} {check_exist_data}")
-
-    option = input(f" {colorama.Fore.WHITE}└──> {colorama.Fore.RESET}")
+    
+    print(" ├[98]- Reset")
+    print(" ├[99]- Exit")
+    option = input(f" {colorama.Fore.WHITE}└──> (type RUN to start): {colorama.Fore.RESET}")
     return option 
 
 if __name__ == "__main__":
@@ -52,6 +54,13 @@ if __name__ == "__main__":
             data["birthday_month"] = input(f" {colorama.Fore.WHITE}[Enter birthday month]> {colorama.Fore.RESET}")
         elif option == "08" or option == "8":
             data["birthday_year"] = input(f" {colorama.Fore.WHITE}[Enter birthday year]> {colorama.Fore.RESET}")
-        elif option.lower() == "exit":
-            print(f"{colorama.Fore.GREEN}Exiting...{colorama.Fore.RESET}")
+        elif option.lower() == "run":
+            if "" in data.values():
+                print(f"{colorama.Fore.RED}Please fill in all the fields before running the program.{colorama.Fore.RESET}")
+            else:
+                print(f"{colorama.Fore.GREEN}Running the program with the provided data...{colorama.Fore.RESET}")
+        elif option == "98":
+            for key in data.keys():
+                data[key] = ""
+        elif option == "99":
             break
