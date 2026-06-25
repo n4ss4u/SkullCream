@@ -3,6 +3,7 @@ import colorama
 from ui import banner
 from utils.pattern_generator import generate_pattern
 from utils.pattern_comparer import compare_pattern
+from utils.verify_gmail import verify_gmail
 
 data = {"email_pattern": "", "first_name": "", "middle_name": "", "last_name_1": "", "last_name_2": "", "birthday_day": "", "birthday_month": "", "birthday_year": ""}
 check_exist_data = ""
@@ -14,24 +15,35 @@ def main_menu():
         if value == "":
             check_exist_data = f"{colorama.Fore.RED}x{colorama.Fore.RESET}"
         else:
-            check_exist_data = f"{colorama.Fore.GREEN}✓{colorama.Fore.RESET} ({value})"
+            check_exist_data = f"{colorama.Fore.GREEN}✓{colorama.Fore.WHITE} ({colorama.Fore.GREEN}{value}{colorama.Fore.WHITE}){colorama.Fore.RESET}"
             
-        print(f" [0{i}]- {key.capitalize().replace("_", " ")} {check_exist_data}")
+        print(f" {colorama.Fore.WHITE}[{colorama.Fore.GREEN}0{i}{colorama.Fore.WHITE}]- {colorama.Fore.WHITE}{key.capitalize().replace("_", " ")} {check_exist_data}")
     
-    print(" [98]- Reset")
-    print(" [99]- Exit")
-    option = input(f" {colorama.Fore.WHITE}└──> (type RUN to start): {colorama.Fore.RESET}")
+    print(f" {colorama.Fore.WHITE}[{colorama.Fore.GREEN}98{colorama.Fore.WHITE}]- {colorama.Fore.RESET}Reset")
+    print(f" {colorama.Fore.WHITE}[{colorama.Fore.GREEN}99{colorama.Fore.WHITE}]- {colorama.Fore.RESET}Exit")
+    option = input(f" {colorama.Fore.WHITE}└──> ({colorama.Fore.GREEN}type RUN to start{colorama.Fore.WHITE}): {colorama.Fore.RESET}")
     return option 
 
 def runnig_info(patterns_amount, valid_patterns_amount, valid_patterns):
     banner()
-    print(f" [INFO] Total patterns generated: {colorama.Fore.GREEN}{patterns_amount}{colorama.Fore.RESET}")
-    print(f" [INFO] Valid patterns found: {colorama.Fore.GREEN}{valid_patterns_amount}{colorama.Fore.RESET}")
+    print("")
+    print(f" {colorama.Fore.WHITE}[{colorama.Fore.GREEN}INFO{colorama.Fore.WHITE}]- {colorama.Fore.RESET}Total patterns generated: {colorama.Fore.GREEN}{patterns_amount}{colorama.Fore.RESET}")
+    print(f" {colorama.Fore.WHITE}[{colorama.Fore.GREEN}INFO{colorama.Fore.WHITE}]- {colorama.Fore.RESET}Valid patterns found: {colorama.Fore.GREEN}{valid_patterns_amount}{colorama.Fore.RESET}")
 
     print("")
-    
+
     for i in valid_patterns:
-        print(f" [+] {colorama.Fore.GREEN}{i}{colorama.Fore.RESET}")
+        if data["email_pattern"].split("@")[1] == "gmail.com":
+            veryfied = verify_gmail(i)
+
+            if veryfied:
+                print(f" {colorama.Fore.WHITE}[{colorama.Fore.GREEN}+{colorama.Fore.WHITE}] {i} {colorama.Fore.GREEN}(exist){colorama.Fore.RESET}")
+            else:
+                print(f" {colorama.Fore.WHITE}[{colorama.Fore.GREEN}-{colorama.Fore.WHITE}] {i} {colorama.Fore.RED}(doesn't exist){colorama.Fore.RESET}")
+        else:
+            print(f" {colorama.Fore.WHITE}[{colorama.Fore.GREEN}*{colorama.Fore.WHITE}] {i} {colorama.Fore.YELLOW}(unknown){colorama.Fore.RESET}")
+
+    input(f"\n {colorama.Fore.WHITE}[{colorama.Fore.GREEN}INFO{colorama.Fore.WHITE}]- {colorama.Fore.RESET}Report completed. Press ENTER to go back to main menu")
 
 if __name__ == "__main__":
     while True:
@@ -68,4 +80,5 @@ if __name__ == "__main__":
 
                 runnig_info(len(generated_patterns), len(valid_patterns_amount), valid_patterns_amount)
 
-                input()
+                for key in data.keys():
+                    data[key] = ""
