@@ -8,6 +8,16 @@ When users request a password reset, many services display a censored version of
 
 ---
 
+## Images
+
+![Screenshot 1](https://raw.githubusercontent.com/n4ss4u/SkullCream/refs/heads/main/media/screen1.png)
+
+--- 
+
+![Screenshot 2](https://raw.githubusercontent.com/n4ss4u/SkullCream/refs/heads/main/media/screen2.png)
+
+--- 
+
 ## How It Works
 
 The script operates in two main stages:
