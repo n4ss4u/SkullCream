@@ -60,7 +60,7 @@ if __name__ == "__main__":
         elif option == "99":
             break
         elif option.lower() == "run":
-            if "" in data.values():
-                print(f"{colorama.Fore.RED}Please fill in all the fields before running the program.{colorama.Fore.RESET}")
+            if not data["email_pattern"]:
+                print(f"{colorama.Fore.RED}Please fill email pattern field before running.{colorama.Fore.RESET}")
             else:
-                print(f"{colorama.Fore.GREEN}Running the program with the provided data...{colorama.Fore.RESET}")
+                print(f"{colorama.Fore.GREEN}Running with the provided data...{colorama.Fore.RESET}")
