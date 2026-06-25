@@ -54,13 +54,13 @@ if __name__ == "__main__":
             data["birthday_month"] = input(f" {colorama.Fore.WHITE}[Enter birthday month]> {colorama.Fore.RESET}")
         elif option == "08" or option == "8":
             data["birthday_year"] = input(f" {colorama.Fore.WHITE}[Enter birthday year]> {colorama.Fore.RESET}")
-        elif option.lower() == "run":
-            if "" in data.values():
-                print(f"{colorama.Fore.RED}Please fill in all the fields before running the program.{colorama.Fore.RESET}")
-            else:
-                print(f"{colorama.Fore.GREEN}Running the program with the provided data...{colorama.Fore.RESET}")
         elif option == "98":
             for key in data.keys():
                 data[key] = ""
         elif option == "99":
             break
+        elif option.lower() == "run":
+            if "" in data.values():
+                print(f"{colorama.Fore.RED}Please fill in all the fields before running the program.{colorama.Fore.RESET}")
+            else:
+                print(f"{colorama.Fore.GREEN}Running the program with the provided data...{colorama.Fore.RESET}")
