@@ -1,26 +1,12 @@
 import colorama
-import os
+
+from ui import banner
 
 data = {"email_pattern": "", "first_name": "", "middle_name": "", "last_name_1": "", "last_name_2": "", "birthday_day": "", "birthday_month": "", "birthday_year": ""}
 check_exist_data = ""
 
-def main_banner():
-    os.system("clear")
-    print(f"{colorama.Fore.GREEN}             .--.           .---.        .-.{colorama.Fore.RESET}")
-    print(f"{colorama.Fore.GREEN}         .---|--|   .-.     |   |  .---. |~|    .--.{colorama.Fore.RESET}")
-    print(f"{colorama.Fore.GREEN}      .--|{colorama.Fore.WHITE}==={colorama.Fore.GREEN}|  |---|_|--.__|   |--|:::| |~|-==-|{colorama.Fore.WHITE}=={colorama.Fore.GREEN}|---.{colorama.Fore.RESET}")
-    print(f"{colorama.Fore.GREEN}      |{colorama.Fore.WHITE}%%{colorama.Fore.GREEN}|   |  |===| |~~|{colorama.Fore.WHITE}%%{colorama.Fore.GREEN}|   |--|   |_|~|    |  |{colorama.Fore.WHITE}___{colorama.Fore.GREEN}|-.{colorama.Fore.RESET}")
-    print(f"{colorama.Fore.GREEN}      |  |   |  |{colorama.Fore.WHITE}==={colorama.Fore.GREEN}| |==|  |   |  |{colorama.Fore.WHITE}:::{colorama.Fore.GREEN}|=| |    |  |---|=|{colorama.Fore.RESET}")
-    print(f"{colorama.Fore.GREEN}      |  |   |  |   |_|__|  |   |__|   | | |    |  |___| |{colorama.Fore.RESET}")
-    print(f"{colorama.Fore.GREEN}      |{colorama.Fore.WHITE}~~{colorama.Fore.GREEN}|{colorama.Fore.WHITE}==={colorama.Fore.GREEN}|--|{colorama.Fore.WHITE}==={colorama.Fore.GREEN}|~|~~|%%|~~~|--|:::|{colorama.Fore.WHITE}={colorama.Fore.GREEN}|{colorama.Fore.WHITE}~{colorama.Fore.GREEN}|{colorama.Fore.WHITE}----{colorama.Fore.GREEN}|{colorama.Fore.WHITE}=={colorama.Fore.GREEN}|{colorama.Fore.WHITE}---{colorama.Fore.GREEN}|{colorama.Fore.WHITE}={colorama.Fore.GREEN}|{colorama.Fore.RESET}")
-    print(f"{colorama.Fore.GREEN}      ^--^---'--^---^-^--^--^---'--^---^-^-^-==-^--^---^-'{colorama.Fore.RESET}")
-    print(f"{colorama.Fore.WHITE}       coded by n4ss4u from AGORA © 2026 ~ SkullCream v0.1{colorama.Fore.RESET}")
-    print(f"{colorama.Fore.GREEN}                  ╔═╗┬┌─┬ ┬┬  ┬  ╔═╗┬─┐┌─┐┌─┐┌┬┐{colorama.Fore.RESET}")
-    print(f"{colorama.Fore.GREEN}                  ╚═╗├┴┐│ ││  │  ║  ├┬┘├┤ ├─┤│││{colorama.Fore.RESET}")
-    print(f"{colorama.Fore.GREEN}                  ╚═╝┴ ┴└─┘┴─┘┴─┘╚═╝┴└─└─┘┴ ┴┴ ┴{colorama.Fore.RESET}")
-    print(f" ┌─────────────────────────────────────────────────────────────")
-    print(f" │                           ")
-
+def main_menu():
+    banner()
     for i, (key, value) in enumerate(data.items(), start=1):
         if value == "":
             check_exist_data = f"{colorama.Fore.RED}x{colorama.Fore.RESET}"
@@ -36,7 +22,7 @@ def main_banner():
 
 if __name__ == "__main__":
     while True:
-        option = main_banner()
+        option = main_menu()
 
         if option == "01" or option == "1":
             data["email_pattern"] = input(f" {colorama.Fore.WHITE}[Enter email pattern]> {colorama.Fore.RESET}")
@@ -62,5 +48,6 @@ if __name__ == "__main__":
         elif option.lower() == "run":
             if not data["email_pattern"]:
                 print(f"{colorama.Fore.RED}Please fill email pattern field before running.{colorama.Fore.RESET}")
+                input("Press Enter to continue...")
             else:
                 print(f"{colorama.Fore.GREEN}Running with the provided data...{colorama.Fore.RESET}")
